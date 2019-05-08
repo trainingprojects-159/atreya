@@ -2,6 +2,7 @@ package com.mphasis.atreya.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -33,5 +34,6 @@ public class Appointment {
 		this.doctor = doctor;
 	}
 	@ManyToOne
+	@JoinColumn(name="doctid")
 	private Doctor doctor;
 }
