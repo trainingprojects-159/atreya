@@ -12,9 +12,17 @@ public class Reporter {
 
 	@Id
 	private String repid;
+	private String pwd;
+	
 	@Override
 	public String toString() {
-		return "Reporter [repid=" + repid + ", leaveReport=" + leaveReport + "]";
+		return "Reporter [repid=" + repid + ", pwd=" + pwd + ", leaveReport=" + leaveReport + "]";
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getRepid() {
 		return repid;
