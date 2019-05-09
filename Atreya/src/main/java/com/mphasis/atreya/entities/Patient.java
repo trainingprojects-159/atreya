@@ -2,6 +2,7 @@ package com.mphasis.atreya.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -70,5 +71,6 @@ public class Patient {
 		this.appointment = appointment;
 	}
 	@OneToOne
+	@JoinColumn(name="appid")
 	private Appointment appointment;
 }

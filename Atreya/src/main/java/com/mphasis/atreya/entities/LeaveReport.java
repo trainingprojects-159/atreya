@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -43,7 +44,9 @@ public class LeaveReport {
 		this.reporter = reporter;
 	}
 	@ManyToOne
+	@JoinColumn(name="doctid")
 	private Doctor doctor;
 	@ManyToOne
+	@JoinColumn(name="repid")
 	private Reporter reporter;
 }
