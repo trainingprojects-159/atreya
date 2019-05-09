@@ -45,24 +45,11 @@ public class PatientDaoImpl implements PatientDao {
 		public void register(Patient patient) {
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
-			Query query=session.createQuery("insert into Patient values(?,?,?,?,?,?)");
-			query.setParameter("name", patient.getPname());
-			query.setParameter("pass",patient.getPwd());
-			query.setParameter("age", patient.getAge());
-			query.setParameter("phnum",patient.getPhnum());
-			query.setParameter("gender", patient.getGender());
-			query.setParameter("report",patient.getReport());			
+			session.save(patient);		
 			tr.commit();
 		}
 		
-		public void insertPatient(Patient patient) {
-			// TODO Auto-generated method stub
-			Session session=sessionFactory.openSession();
-			Transaction tr=session.beginTransaction();
-			session.save(patient);
-			tr.commit();
 
-		}
 
 		public void deletePatient(String pid) {
 			// TODO Auto-generated method stub
@@ -71,15 +58,12 @@ public class PatientDaoImpl implements PatientDao {
 			Patient patient1=(Patient)session.get(Patient.class, pid);
 			session.delete(patient1);
 			tr.commit();
-
-
 		}
 
 		public void updatePatient(Patient patient) {
 			// TODO Auto-generated method stub
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
-			//patient.setGear("type3");
 			session.update(patient);
 			tr.commit();
 
