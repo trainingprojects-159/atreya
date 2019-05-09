@@ -21,12 +21,6 @@ public class PatientServiceImpl implements PatientService {
 		this.patientDao = patientDao;
 	}
 
-	public void addPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		patientDao.insertPatient(patient);
-
-	}
-
 	public void removePatient(String pid) {
 		// TODO Auto-generated method stub
 		patientDao.deletePatient(pid);

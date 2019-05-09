@@ -6,7 +6,6 @@ import com.mphasis.atreya.entities.Patient;
 
 
 public interface PatientService {
-	public void addPatient(Patient patient);
 	public void removePatient(String pid);
 	public void editPatient(Patient patient);
 	public Patient getById(String pid);

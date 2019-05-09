@@ -45,7 +45,7 @@ public class PatientController {
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void showRegister(@RequestBody Patient patient) {
-	    patientService.addPatient(patient);
+	    patientService.roll(patient);
 	  }
 	 
 	  @RequestMapping(value="/patient/{patientid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
