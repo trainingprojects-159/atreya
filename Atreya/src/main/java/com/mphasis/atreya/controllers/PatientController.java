@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Patient;
+import com.mphasis.atreya.service.AppointmentService;
 import com.mphasis.atreya.service.PatientService;
 
 
@@ -24,6 +26,7 @@ import com.mphasis.atreya.service.PatientService;
 public class PatientController {
 	@Autowired
 	PatientService patientService;
+	AppointmentService appointmentService;
 
 	public void setpatientService(PatientService patientService) {
 		this.patientService = patientService;
@@ -50,10 +53,15 @@ public class PatientController {
 		  this.patientService.removePatient(patientid);
 	  }
 	
-	  @RequestMapping(value="/patient",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editpatient(@RequestBody Patient c) {
-        this.patientService.editPatient(c);		
+	  @RequestMapping(value="/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void editpatient(@RequestBody Patient p) {
+        this.patientService.editPatient(p);		
 	}
+	  @RequestMapping(value = "/appointment/{appid}", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	  public void requestAppointment(@RequestBody Appointment appointment) {
+	    appointmentService.addAppointment(appointment);
+	  }
+	
 	
 
 }
