@@ -39,7 +39,7 @@ public class Feedback {
 		this.doctor = doctor;
 	}
 	private String feedback;
-	@ManyToMany(mappedBy="feedback", cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="doctid")
 	private List<Doctor> doctor;
 	

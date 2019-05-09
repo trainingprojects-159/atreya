@@ -16,6 +16,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.mphasis.atreya.entities.Admin;
+import com.mphasis.atreya.entities.Appointment;
+import com.mphasis.atreya.entities.Doctor;
+import com.mphasis.atreya.entities.Feedback;
+import com.mphasis.atreya.entities.LeaveReport;
+import com.mphasis.atreya.entities.Patient;
+import com.mphasis.atreya.entities.Reporter;
+
 
 @Configuration
 @EnableWebMvc

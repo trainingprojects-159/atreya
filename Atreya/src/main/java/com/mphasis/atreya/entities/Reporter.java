@@ -36,6 +36,6 @@ public class Reporter {
 	public void setLeaveReport(List<LeaveReport> leaveReport) {
 		this.leaveReport = leaveReport;
 	}
-	@OneToMany(mappedBy="reporter", cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<LeaveReport> leaveReport;
 }

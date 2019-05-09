@@ -4,15 +4,27 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.*;
+
+import com.mphasis.atreya.util.StringPrefixedSequenceIdGenerator;
 
 @Entity
 public class Doctor {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctid_seq")
+    @GenericGenerator(
+        name = "doctid_seq", 
+        strategy = "com.mphasis.atreya.util.StringPrefixedSequenceIdGenerator", 
+        parameters = {
+            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "2"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "DR"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String doctid;
 	private String pwd;
 	private String doctname;
@@ -59,10 +71,10 @@ public class Doctor {
 	public void setAppointment(List<Appointment> appointment) {
 		this.appointment = appointment;
 	}
-	public LeaveReport getLeaveReport() {
+	public List<LeaveReport> getLeaveReport() {
 		return leaveReport;
 	}
-	public void setLeaveReport(LeaveReport leaveReport) {
+	public void setLeaveReport(List<LeaveReport> leaveReport) {
 		this.leaveReport = leaveReport;
 	}
 	public List<Feedback> getFeedback() {
@@ -71,12 +83,12 @@ public class Doctor {
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
 	}
-	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Patient> patient;
-	@OneToMany(mappedBy="appointment", cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Appointment> appointment;
-	@OneToMany(mappedBy="leaveReport", cascade=CascadeType.ALL)
-	private LeaveReport leaveReport;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<LeaveReport> leaveReport;
 	@ManyToMany
 	private List<Feedback> feedback;
 }
