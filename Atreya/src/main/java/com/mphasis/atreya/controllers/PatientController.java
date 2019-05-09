@@ -57,7 +57,7 @@ public class PatientController {
 	public void editpatient(@RequestBody Patient p) {
         this.patientService.editPatient(p);		
 	}
-	  @RequestMapping(value = "/appointment/{appid}", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	  @RequestMapping(value = "/appointment/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void requestAppointment(@RequestBody Appointment appointment) {
 	    appointmentService.addAppointment(appointment);
 	  }
