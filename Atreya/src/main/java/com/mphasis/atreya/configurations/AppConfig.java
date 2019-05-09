@@ -40,12 +40,14 @@ public class AppConfig {
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDatSource());
-		sessionFactory.setPackagesToScan("com.mphasis.atreya.entities");
-		/*sessionFactory.setAnnotatedClasses(Fuser.class);
-		sessionFactory.setAnnotatedClasses(Car.class);
-		sessionFactory.setAnnotatedClasses(Product.class);
-		sessionFactory.setAnnotatedClasses(Department1.class);
-		sessionFactory.setAnnotatedClasses(Employees2.class);*/
+		sessionFactory.setPackagesToScan("com.mphasis.atreya.*");
+		sessionFactory.setAnnotatedClasses(Admin.class);
+		sessionFactory.setAnnotatedClasses(Appointment.class);
+		sessionFactory.setAnnotatedClasses(Doctor.class);
+		sessionFactory.setAnnotatedClasses(Feedback.class);
+		sessionFactory.setAnnotatedClasses(LeaveReport.class);
+		sessionFactory.setAnnotatedClasses(Patient.class);
+		sessionFactory.setAnnotatedClasses(Reporter.class);
 		Properties properties=new Properties();
 		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 		properties.put("hibernate.hbm2ddl.auto", "update");
