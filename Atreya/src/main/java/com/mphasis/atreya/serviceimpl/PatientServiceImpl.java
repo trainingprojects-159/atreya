@@ -3,13 +3,13 @@ package com.mphasis.atreya.serviceimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mphasis.atreya.dao.PatientDao;
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.service.PatientService;
 
-@Component
+@Service
 public class PatientServiceImpl implements PatientService {
 	
 
