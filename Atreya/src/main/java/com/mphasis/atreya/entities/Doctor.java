@@ -29,6 +29,14 @@ public class Doctor {
 	private String pwd;
 	private String doctname;
 	private String specialization;
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	private List<Patient> patient;
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	private List<Appointment> appointment;
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	private List<LeaveReport> leaveReport;
+	@ManyToMany(mappedBy="doctor")
+	private List<Feedback> feedback;
 	@Override
 	public String toString() {
 		return "Doctor [doctid=" + doctid + ", pwd=" + pwd + ", doctname=" + doctname + ", specialization="
@@ -83,12 +91,5 @@ public class Doctor {
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
 	}
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Patient> patient;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Appointment> appointment;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<LeaveReport> leaveReport;
-	@ManyToMany
-	private List<Feedback> feedback;
+	
 }

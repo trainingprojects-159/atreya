@@ -3,7 +3,10 @@ package com.mphasis.atreya.configurations;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -12,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import com.mphasis.atreya.entities.Admin;
 import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Doctor;
@@ -24,16 +26,13 @@ import com.mphasis.atreya.entities.Reporter;
 
 @Configuration
 @EnableWebMvc
-@EnableTransactionManagement
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages="com.mphasis.atreya.*")
 public class AppConfig {
 	
-	
 	@Bean
 	public DriverManagerDataSource getDatSource() { 
 	DriverManagerDataSource ds=new DriverManagerDataSource();
-	
 	ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 	ds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
 	ds.setUsername("Atreya");
@@ -62,12 +61,6 @@ public class AppConfig {
 		return sessionFactory;
 	}
 	
-	@Bean
-	public HibernateTransactionManager getHibernateTransactionManger(SessionFactory s) {
-		HibernateTransactionManager hibernateTransactionManager=new HibernateTransactionManager();
-		hibernateTransactionManager.setSessionFactory(s);
-		return hibernateTransactionManager;
-	}
 	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {

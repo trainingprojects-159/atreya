@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +24,6 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	
 		Session session=sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		//System.out.println(a.getAppid());
 		session.save(a);
 		tr.commit();
 	}
@@ -58,7 +58,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	public List<Appointment> getAll() {
 		Session session=sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		List<Appointment> appointments=session.createCriteria(Appointment.class).list();
+		List<Appointment> appointments=session.createQuery("from Appointment", Appointment.class).list();
 		tr.commit();
 		return appointments;
 	}
@@ -66,8 +66,8 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	public List<Appointment> getAppointmentByDoctid(String doctid) {
 		Session session=sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
-		Criteria cri=session.createCriteria(Appointment.class);
-		cri.add(Restrictions.eq("doctid", doctid));
+		Query<Appointment> cri=session.createQuery("from Appointment where doctid=:doctid", Appointment.class);
+		cri.setParameter("doctid", doctid);
 		List<Appointment> appointments=cri.list();
 		tr.commit();
 		return appointments;

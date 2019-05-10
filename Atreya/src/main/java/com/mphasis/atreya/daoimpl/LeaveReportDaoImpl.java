@@ -13,7 +13,6 @@ import com.mphasis.atreya.entities.LeaveReport;
 
 
 @Repository
-
 public class LeaveReportDaoImpl implements LeaveReportDao {
 
 	@Autowired

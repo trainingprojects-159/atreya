@@ -16,6 +16,7 @@ import com.mphasis.atreya.service.ReporterService;
 
 
 @RestController
+@RequestMapping("/reporter")
 public class ReporterController {
     @Autowired
 	ReporterService reporterService;
@@ -31,7 +32,7 @@ public class ReporterController {
 		this.leaveReportService = leaveReportService;
 	}
 
-	@RequestMapping(value="/login",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/reporterlogin",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Reporter login(@RequestParam("repid")String repid,@RequestParam("pwd")String pwd) {
 		Reporter reporter=reporterService.login(repid,pwd);
 		return reporter;

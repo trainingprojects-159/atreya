@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -31,6 +32,17 @@ public class Patient {
 	private String age;
 	private String gender;
 	private String report;
+	@ManyToOne
+	private Doctor doctor;
+	public Doctor getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+	@OneToOne
+//@JoinColumn(name="appid")
+	private Appointment appointment;
 	
 	@Override
 	public String toString() {
@@ -85,7 +97,5 @@ public class Patient {
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 	}
-	@OneToOne
-	@JoinColumn(name="appid")
-	private Appointment appointment;
+	
 }

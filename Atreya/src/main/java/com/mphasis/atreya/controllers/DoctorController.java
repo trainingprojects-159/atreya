@@ -20,6 +20,7 @@ import com.mphasis.atreya.service.LeaveReportService;
 import com.mphasis.atreya.service.PatientService;
 
 @RestController
+@RequestMapping("doctor")
 public class DoctorController {
 	
 	@Autowired
@@ -47,9 +48,9 @@ public class DoctorController {
 		this.patientService = patientService;
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Doctor login(@RequestParam("doctname")String doctname,@RequestParam("pwd")String pwd) {
-		Doctor doctor=doctorService.signin(doctname, pwd);
+	@RequestMapping(value="/doctorlogin", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Doctor login(@RequestParam("doctid")String doctid,@RequestParam("pwd")String pwd) {
+		Doctor doctor=doctorService.signin(doctid, pwd);
 		return doctor;
 	}
 	
@@ -60,16 +61,11 @@ public class DoctorController {
 	
 	@RequestMapping(value="/leavereport/add", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public void applyLeave(@RequestBody LeaveReport lr) {
-		this.leaveReportService.applyLeave(lr);;
+		this.leaveReportService.applyLeave(lr);
 	}
 	
 	@RequestMapping(value="/patient/{pid}", method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editPatient(@PathVariable("pid")int pid, @RequestBody Patient p) {
 		this.patientService.editPatient(p);
 	}
-	
-	
-	
-	
-
 }

@@ -16,12 +16,12 @@ public class Feedback {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int slno;
+	private String feedback;
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Doctor> doctor;
+	
 	public int getSlno() {
 		return slno;
-	}
-	@Override
-	public String toString() {
-		return "Feedback [slno=" + slno + ", feedback=" + feedback + ", doctor=" + doctor + "]";
 	}
 	public void setSlno(int slno) {
 		this.slno = slno;
@@ -38,9 +38,9 @@ public class Feedback {
 	public void setDoctor(List<Doctor> doctor) {
 		this.doctor = doctor;
 	}
-	private String feedback;
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="doctid")
-	private List<Doctor> doctor;
 	
+	@Override
+	public String toString() {
+		return "Feedback [slno=" + slno + ", feedback=" + feedback + ", doctor=" + doctor + "]";
+	}
 }

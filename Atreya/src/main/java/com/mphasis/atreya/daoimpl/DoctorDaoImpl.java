@@ -1,9 +1,8 @@
 package com.mphasis.atreya.daoimpl;
 
 import java.util.List;
-import javax.transaction.Transactional;
 
-import org.hibernate.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,7 +12,6 @@ import com.mphasis.atreya.dao.DoctorDao;
 import com.mphasis.atreya.entities.Doctor;
 
 @Repository
-
 public class DoctorDaoImpl implements DoctorDao {
 
 	@Autowired
@@ -68,10 +66,10 @@ public class DoctorDaoImpl implements DoctorDao {
 	public Doctor login(String doctname, String pwd) {
 		Session session=sessionFactory.getCurrentSession();
 		Transaction tr=session.beginTransaction();
-		Query query=session.createQuery("from Doctor where doctname=:doctname and pwd=:pwd");
+		TypedQuery<Doctor> query=session.createQuery("from Doctor where doctname=:doctname and pwd=:pwd");
 		query.setParameter("doctname", doctname);
 		query.setParameter("pwd", pwd);
-		Doctor doctor=(Doctor) query.uniqueResult();
+		Doctor doctor=(Doctor) query.getSingleResult();
 		tr.commit();
 
 		return doctor;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.mphasis.atreya.entities.Appointment;
 
 public interface AppointmentDao {
+	
 	public void requestAppointment(Appointment a);
 	public void deleteAppointment(String id);
 	public void updateAppointment(Appointment appointment);

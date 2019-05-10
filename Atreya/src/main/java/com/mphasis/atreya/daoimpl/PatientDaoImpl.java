@@ -2,10 +2,8 @@ package com.mphasis.atreya.daoimpl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
+import javax.persistence.TypedQuery;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,10 +32,10 @@ public class PatientDaoImpl implements PatientDao {
 		public Patient login(String pname,String pwd) {
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
-			Query query=session.createQuery("from Patient where pname=:name and pwd=:pass");
+			TypedQuery<Patient> query=session.createQuery("from Patient where pname=:name and pwd=:pass");
 			query.setParameter("name", pname);
 			query.setParameter("pass",pwd);
-			Patient patient=(Patient)query.uniqueResult();
+			Patient patient=(Patient)query.getSingleResult();
 			tr.commit();
 			return patient;
 		}

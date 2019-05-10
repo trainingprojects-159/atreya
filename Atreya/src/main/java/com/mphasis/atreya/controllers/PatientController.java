@@ -22,6 +22,7 @@ import com.mphasis.atreya.service.PatientService;
 
 
 @RestController
+@RequestMapping("/patient")
 public class PatientController {
 	@Autowired
 	PatientService patientService;
@@ -44,28 +45,20 @@ public class PatientController {
 
 	
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/patientlogin", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Patient login(@RequestParam("pname")String pname,@RequestParam("pwd")String pwd) {
 		Patient user=patientService.entry(pname,pwd);
 		return user;
 	}
-/*
-	@RequestMapping("/home")
-	public String getPage() {
-		return "index";
-	}*/
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void showRegister(@RequestBody Patient patient) {
 	    patientService.roll(patient);
 	  }
 	 
-	 /* @RequestMapping(value="/patient/{patientid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void removepatient(@PathVariable ("patientid") String patientid) {
-		  this.patientService.removePatient(patientid);
-	  }*/
+	 
 	
-	  @RequestMapping(value="/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	  @RequestMapping(value = "/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editPatient(@RequestBody Patient p) {
         this.patientService.editPatient(p);		
 	}

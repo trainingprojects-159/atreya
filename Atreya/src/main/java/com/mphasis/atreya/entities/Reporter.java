@@ -27,6 +27,8 @@ public class Reporter {
             @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String repid;
 	private String pwd;
+	@OneToMany(mappedBy="reporter",cascade=CascadeType.ALL)
+	private List<LeaveReport> leaveReport;
 	
 	public String getPwd() {
 		return pwd;
@@ -50,6 +52,5 @@ public class Reporter {
 	public void setLeaveReport(List<LeaveReport> leaveReport) {
 		this.leaveReport = leaveReport;
 	}
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<LeaveReport> leaveReport;
+	
 }

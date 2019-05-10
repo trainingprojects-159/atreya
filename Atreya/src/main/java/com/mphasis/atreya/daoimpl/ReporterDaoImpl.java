@@ -1,7 +1,7 @@
 package com.mphasis.atreya.daoimpl;
 
 
-import org.hibernate.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,20 +24,15 @@ public class ReporterDaoImpl implements ReporterDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	
-	
 	public Reporter login(String repid, String pwd) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		Query query=session.createQuery("from Reporter where repid=:repid and pwd=:pwd");
+		TypedQuery<Reporter> query=session.createQuery("from Reporter where repid=:repid and pwd=:pwd");
 		query.setParameter("repid", repid);
 		query.setParameter("pwd", pwd);
-		Reporter reporter=(Reporter)query.uniqueResult();
+		Reporter reporter=(Reporter)query.getSingleResult();
 		tr.commit();
 		return reporter;
-		
-	
-		
 	}
 
 	public void insertReporter(Reporter reporter) {
@@ -46,19 +41,15 @@ public class ReporterDaoImpl implements ReporterDao {
 			Transaction tr = session.beginTransaction();
 			session.save(reporter);
 			tr.commit();
-
 		}
-		
 	}
 
 	public void deleteReporter(String repid) {
-		
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
 		Reporter r = (Reporter) session.get(Reporter.class,repid);
 		session.delete(r);
 		tr.commit();
-		
 	}
 
 	public void updateReporter(Reporter reporter) {
@@ -66,8 +57,5 @@ public class ReporterDaoImpl implements ReporterDao {
 		Transaction tr = session.beginTransaction();
 		session.update(reporter);
 		tr.commit();
-
-		
 	}
-
 }

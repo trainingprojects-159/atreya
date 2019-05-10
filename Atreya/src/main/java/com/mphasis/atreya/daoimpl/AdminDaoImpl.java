@@ -1,5 +1,7 @@
 package com.mphasis.atreya.daoimpl;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,11 +24,10 @@ public class AdminDaoImpl implements AdminDao {
 	public Admin login(String adminid, String pwd) 
 	{
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Admin where adminid=:adminid and pwd=:pwd");
+		TypedQuery<Admin> query=session.createQuery("from Admin where adminid=:adminid and pwd=:pwd");
 		   query.setParameter("adminid", adminid);
 		   query.setParameter("pwd",pwd);
-		   Admin admin=(Admin) query.uniqueResult();
+		   Admin admin=(Admin) query.getSingleResult();
 		   return admin;
 	}
-
 }

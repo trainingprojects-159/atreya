@@ -14,14 +14,10 @@ public class LeaveReportServiceImpl implements LeaveReportService {
 
 	public void applyLeave(LeaveReport leaveReport) {
 		 leaveReportDao.applyLeave(leaveReport);
-			
-		
 	}
 
 	public void manageLeave(LeaveReport leaveReport) {
 		leaveReportDao.manageLeave(leaveReport);
-	
-		
 	}
 
 }

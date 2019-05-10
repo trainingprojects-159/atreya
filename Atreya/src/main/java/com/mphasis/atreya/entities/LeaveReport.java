@@ -14,11 +14,7 @@ public class LeaveReport {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int lrid;
 	private String status;
-	@Override
-	public String toString() {
-		return "LeaveReport [lrid=" + lrid + ", status=" + status + ", doctor=" + doctor + ", reporter=" + reporter
-				+ "]";
-	}
+	
 	public int getLrid() {
 		return lrid;
 	}
@@ -44,9 +40,13 @@ public class LeaveReport {
 		this.reporter = reporter;
 	}
 	@ManyToOne
-	@JoinColumn(name="doctid")
 	private Doctor doctor;
 	@ManyToOne
-	@JoinColumn(name="repid")
 	private Reporter reporter;
+
+	@Override
+	public String toString() {
+		return "LeaveReport [lrid=" + lrid + ", status=" + status + ", doctor=" + doctor + ", reporter=" + reporter
+				+ "]";
+	}
 }
