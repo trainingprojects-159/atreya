@@ -3,10 +3,7 @@ package com.mphasis.atreya.configurations;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -48,7 +45,7 @@ public class AppConfig {
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDatSource());
-		sessionFactory.setPackagesToScan("com.mphasis.atreya.*");
+		sessionFactory.setPackagesToScan("com.mphasis.atreya.entities");
 		sessionFactory.setAnnotatedClasses(Admin.class);
 		sessionFactory.setAnnotatedClasses(Appointment.class);
 		sessionFactory.setAnnotatedClasses(Doctor.class);
