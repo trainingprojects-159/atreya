@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mphasis.atreya.entities.Admin;
 import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Doctor;
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.entities.Reporter;
+import com.mphasis.atreya.service.AdminService;
 import com.mphasis.atreya.service.AppointmentService;
 import com.mphasis.atreya.service.DoctorService;
 import com.mphasis.atreya.service.PatientService;
@@ -26,11 +29,19 @@ import com.mphasis.atreya.service.ReporterService;
 @RestController
 public class AdminController {
 	@Autowired
+	AdminService adminService;
+	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Admin login(@RequestParam("adminid")String adminid,@RequestParam("pwd") String pwd) {
+		Admin admin=adminService.register(adminid, pwd);
+		return admin;
+	}
+	@Autowired
 	DoctorService doctorService;
     
 	public void setDoctorService(DoctorService doctorService) {
 		this.doctorService = doctorService;
 	}
+	
 	 
 	 @RequestMapping(value="/doctors",method=RequestMethod.GET)
 	 public List<Doctor> listDoctors()
