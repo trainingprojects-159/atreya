@@ -1,12 +1,13 @@
 package com.mphasis.atreya.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mphasis.atreya.dao.LeaveReportDao;
 import com.mphasis.atreya.entities.LeaveReport;
 import com.mphasis.atreya.service.LeaveReportService;
 
-
+@Service
 public class LeaveReportServiceImpl implements LeaveReportService {
 	@Autowired
 	LeaveReportDao leaveReportDao;
