@@ -30,6 +30,7 @@ import com.mphasis.atreya.service.ReporterService;
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	
 	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Admin login(@RequestParam("adminid")String adminid,@RequestParam("pwd") String pwd) {
 		Admin admin=adminService.register(adminid, pwd);
@@ -44,31 +45,26 @@ public class AdminController {
 	
 	 
 	 @RequestMapping(value="/doctors",method=RequestMethod.GET)
-	 public List<Doctor> listDoctors()
-	 {
+	 public List<Doctor> listDoctors(){
 	     return doctorService.getDoctors();
 	 }
 	 
 	 @RequestMapping(value="/doctor/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public void addDoctor(@RequestBody Doctor d)
-	 {
+	 public void addDoctor(@RequestBody Doctor d) {
    	    this.doctorService.addDoctor(d); 
 	 }
 	
 	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-		public void deleteDoctor(@PathVariable("doctid") String doctid)
-		{
+		public void deleteDoctor(@PathVariable("doctid") String doctid){
 	     	this.doctorService.removeDoctor(doctid);
 		}
 	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-		public void editDoctor(@PathVariable("doctid") String doctid,@RequestBody Doctor d)
-		{
+		public void editDoctor(@PathVariable("doctid") String doctid,@RequestBody Doctor d){
 		  this.doctorService.editDoctor(d);
 		
 		}	
 	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.GET)
-		public Doctor getByDoctorId(@PathVariable("doctid") String doctid)
-		{
+		public Doctor getByDoctorId(@PathVariable("doctid") String doctid){
 		   return  this.doctorService.getById(doctid);
 		
 		}
@@ -78,14 +74,12 @@ public class AdminController {
 		this.patientService = patientService;
 	}
     @RequestMapping(value="/patient/{pid}",method=RequestMethod.GET)
-	public Patient getByPatientId(@PathVariable("pid") String pid)
-	{
+	public Patient getByPatientId(@PathVariable("pid") String pid){
 	   return  this.patientService.getById(pid);
 	
 	}
     @RequestMapping(value="/patient/{pid}",method=RequestMethod.PUT)
-	public void editPatient(@PathVariable("pid") String pid,@RequestBody Patient p)
-	{
+	public void editPatient(@PathVariable("pid") String pid,@RequestBody Patient p){
 	  this.patientService.editPatient(p);
 	
 	}
@@ -97,16 +91,14 @@ public class AdminController {
 	}
     
     @RequestMapping(value="/reporter/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public void addReporter(@RequestBody Reporter r)
-	 {
+	 public void addReporter(@RequestBody Reporter r){
   	    this.reporterService.addReporter(r); 
 	 }
 	  	
     @Autowired
     AppointmentService appointmentService;
     @RequestMapping(value="/appointment/{appid}",method=RequestMethod.PUT)
-	public void updateAppointment(@PathVariable("appid") String appid,@RequestBody Appointment a)
-	{
+	public void updateAppointment(@PathVariable("appid") String appid,@RequestBody Appointment a){
 	  this.appointmentService.editAppointment(a);
 	
 	}
