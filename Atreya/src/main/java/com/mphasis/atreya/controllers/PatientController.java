@@ -1,17 +1,23 @@
 package com.mphasis.atreya.controllers;
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.mphasis.atreya.entities.Appointment;
+import com.mphasis.atreya.entities.Feedback;
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.service.AppointmentService;
+import com.mphasis.atreya.service.FeedbackService;
 import com.mphasis.atreya.service.PatientService;
 
 
@@ -19,39 +25,60 @@ import com.mphasis.atreya.service.PatientService;
 public class PatientController {
 	@Autowired
 	PatientService patientService;
+	@Autowired
 	AppointmentService appointmentService;
+	@Autowired
+	FeedbackService feedbackService;
 
-	public void setpatientService(PatientService patientService) {
+	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
+
+	public void setAppointmentService(AppointmentService appointmentService) {
+		this.appointmentService = appointmentService;
+	}
+
+	public void setFeedbackService(FeedbackService feedbackService) {
+		this.feedbackService = feedbackService;
+	}
+
+	
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Patient login(@RequestParam("pname")String pname,@RequestParam("pwd")String pwd) {
 		Patient user=patientService.entry(pname,pwd);
 		return user;
 	}
-
+/*
 	@RequestMapping("/home")
 	public String getPage() {
 		return "index";
-	}
+	}*/
 	
 	  @RequestMapping(value = "/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void showRegister(@RequestBody Patient patient) {
 	    patientService.roll(patient);
 	  }
 	 
-	  @RequestMapping(value="/patient/{patientid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
+	 /* @RequestMapping(value="/patient/{patientid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void removepatient(@PathVariable ("patientid") String patientid) {
 		  this.patientService.removePatient(patientid);
-	  }
+	  }*/
 	
 	  @RequestMapping(value="/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editpatient(@RequestBody Patient p) {
+	public void editPatient(@RequestBody Patient p) {
         this.patientService.editPatient(p);		
 	}
 	  @RequestMapping(value = "/appointment/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	  public void requestAppointment(@RequestBody Appointment appointment) {
 	    appointmentService.addAppointment(appointment);
 	  }
+	  @RequestMapping(value = "/feedback/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	  public void createFeedback(@RequestBody Feedback feedback) {
+	    feedbackService.addFeedback(feedback);
+	  }
+	
+	
+
 }
+

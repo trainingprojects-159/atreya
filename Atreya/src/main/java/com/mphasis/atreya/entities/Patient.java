@@ -1,14 +1,29 @@
 package com.mphasis.atreya.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.atreya.util.StringPrefixedSequenceIdGenerator;
 
 @Entity
 public class Patient {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_seq")
+    @GenericGenerator(
+        name = "patient_seq", 
+        strategy = "com.mphasis.atreya.util.StringPrefixedSequenceIdGenerator", 
+        parameters = {
+            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "2"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "PT"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String pid;
 	private String pwd;
 	private String pname;
