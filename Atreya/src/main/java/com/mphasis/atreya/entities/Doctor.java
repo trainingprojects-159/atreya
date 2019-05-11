@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mphasis.atreya.util.StringPrefixedSequenceIdGenerator;
 
 @Entity
@@ -29,13 +31,17 @@ public class Doctor {
 	private String pwd;
 	private String doctname;
 	private String specialization;
-	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Patient> patient;
-	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Appointment> appointment;
-	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<LeaveReport> leaveReport;
 	@ManyToMany(mappedBy="doctor")
+	@JsonIgnore
 	private List<Feedback> feedback;
 	@Override
 	public String toString() {

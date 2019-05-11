@@ -34,15 +34,17 @@ public class Patient {
 	private String report;
 	@ManyToOne
 	private Doctor doctor;
+	
+	@OneToOne
+	private Appointment appointment;
+	
 	public Doctor getDoctor() {
 		return doctor;
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	@OneToOne
-//@JoinColumn(name="appid")
-	private Appointment appointment;
+	
 	
 	@Override
 	public String toString() {

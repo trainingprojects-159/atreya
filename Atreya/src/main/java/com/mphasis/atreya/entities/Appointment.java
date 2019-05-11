@@ -48,6 +48,5 @@ public class Appointment {
 		this.doctor = doctor;
 	}
 	@ManyToOne
-	@JoinColumn(name="doctid")
 	private Doctor doctor;
 }

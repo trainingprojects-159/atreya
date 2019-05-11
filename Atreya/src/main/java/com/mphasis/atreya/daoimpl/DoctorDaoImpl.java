@@ -41,7 +41,6 @@ public class DoctorDaoImpl implements DoctorDao {
 		session.update(doctor);
 		session.close();
 		tr.commit();
-
 	}
 
 	public Doctor getById(String doctid) {
@@ -49,17 +48,14 @@ public class DoctorDaoImpl implements DoctorDao {
 		Transaction tr=session.beginTransaction();
 		Doctor d=(Doctor)session.get(Doctor.class, doctid);
 		tr.commit();
-
 		return d;
 	}
 
 	public List<Doctor> getAll() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		@SuppressWarnings("deprecation")
-		List<Doctor> doctors=session.createCriteria(Doctor.class).list();
+		List<Doctor> doctors=session.createQuery("from Doctor", Doctor.class).list();
 		tr.commit();
-
 		return doctors;
 	}
 
@@ -71,7 +67,6 @@ public class DoctorDaoImpl implements DoctorDao {
 		query.setParameter("pwd", pwd);
 		Doctor doctor=(Doctor) query.getSingleResult();
 		tr.commit();
-
 		return doctor;
 	}
 }

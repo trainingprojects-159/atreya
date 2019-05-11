@@ -1,7 +1,5 @@
 package com.mphasis.atreya.daoimpl;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,12 +10,10 @@ import com.mphasis.atreya.dao.FeedbackDao;
 import com.mphasis.atreya.entities.Feedback;
 
 @Repository
-
 public class FeedbackDaoImpl implements FeedbackDao {
 
 	@Autowired
     SessionFactory sessionFactory;
-	
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -28,7 +24,5 @@ public class FeedbackDaoImpl implements FeedbackDao {
 		Transaction tr=session.beginTransaction();
 		session.save(feedback);
 		tr.commit();
-		
 	}
-
 }

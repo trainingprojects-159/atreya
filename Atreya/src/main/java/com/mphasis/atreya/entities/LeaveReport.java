@@ -14,6 +14,11 @@ public class LeaveReport {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int lrid;
 	private String status;
+
+	@ManyToOne
+	private Doctor doctor;
+	@ManyToOne
+	private Reporter reporter;
 	
 	public int getLrid() {
 		return lrid;
@@ -39,10 +44,6 @@ public class LeaveReport {
 	public void setReporter(Reporter reporter) {
 		this.reporter = reporter;
 	}
-	@ManyToOne
-	private Doctor doctor;
-	@ManyToOne
-	private Reporter reporter;
 
 	@Override
 	public String toString() {

@@ -1,9 +1,5 @@
 package com.mphasis.atreya.controllers;
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -43,35 +39,29 @@ public class PatientController {
 		this.feedbackService = feedbackService;
 	}
 
-	
-	
 	@RequestMapping(value="/patientlogin", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Patient login(@RequestParam("pname")String pname,@RequestParam("pwd")String pwd) {
 		Patient user=patientService.entry(pname,pwd);
 		return user;
 	}
 	
-	  @RequestMapping(value = "/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void showRegister(@RequestBody Patient patient) {
+	@RequestMapping(value = "/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void showRegister(@RequestBody Patient patient) {
 	    patientService.roll(patient);
-	  }
+	}
 	 
-	 
-	
-	  @RequestMapping(value = "/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/patient/{patientid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editPatient(@RequestBody Patient p) {
         this.patientService.editPatient(p);		
 	}
-	  @RequestMapping(value = "/appointment/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void requestAppointment(@RequestBody Appointment appointment) {
+	
+	@RequestMapping(value = "/appointment/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void requestAppointment(@RequestBody Appointment appointment) {
 	    appointmentService.addAppointment(appointment);
-	  }
-	  @RequestMapping(value = "/feedback/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void createFeedback(@RequestBody Feedback feedback) {
+	}
+	
+	@RequestMapping(value = "/feedback/add", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void createFeedback(@RequestBody Feedback feedback) {
 	    feedbackService.addFeedback(feedback);
 	  }
-	
-	
-
 }
-

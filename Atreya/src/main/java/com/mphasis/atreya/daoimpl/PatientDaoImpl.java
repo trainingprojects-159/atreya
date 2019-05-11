@@ -1,19 +1,15 @@
 package com.mphasis.atreya.daoimpl;
 
 import java.util.List;
-
 import javax.persistence.TypedQuery;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.mphasis.atreya.dao.PatientDao;
 import com.mphasis.atreya.entities.Patient;
-
 
 @Repository
 public class PatientDaoImpl implements PatientDao {
@@ -47,10 +43,7 @@ public class PatientDaoImpl implements PatientDao {
 			tr.commit();
 		}
 		
-
-
 		public void deletePatient(String pid) {
-			// TODO Auto-generated method stub
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			Patient patient1=(Patient)session.get(Patient.class, pid);
@@ -59,16 +52,13 @@ public class PatientDaoImpl implements PatientDao {
 		}
 
 		public void updatePatient(Patient patient) {
-			// TODO Auto-generated method stub
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			session.update(patient);
 			tr.commit();
-
 		}
 
 		public Patient getById(String pid) {
-			// TODO Auto-generated method stub
 			Session session = this.sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			Patient patient1=(Patient)session.get(Patient.class, pid);
@@ -77,25 +67,20 @@ public class PatientDaoImpl implements PatientDao {
 		}
 
 		public List<Patient> getPatients() {
-			// TODO Auto-generated method stub
 			Session session = this.sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
-			List<Patient> patientList = session.createCriteria(Patient.class).list();
-			tr.commit();
-			return patientList;
-		}
-
-		public List<Patient> getPatientByName(String pname) {
-			// TODO Auto-generated method stub
-			Session session = this.sessionFactory.openSession();
-			Transaction tr=session.beginTransaction();
-			Criteria cri=session.createCriteria(Patient.class);
-			cri.add(Restrictions.eqOrIsNull("model", pname));
-			List<Patient> patients=cri.list();
+			List<Patient> patients=session.createQuery("from Patient", Patient.class).list();
 			tr.commit();
 			return patients;
 		}
 
+		public List<Patient> getPatientByName(String pname) {
+			Session session = this.sessionFactory.openSession();
+			Transaction tr=session.beginTransaction();
+			Query<Patient> cri=session.createQuery("from Patient where pname=:pname", Patient.class);
+			cri.setParameter("pname", pname);
+			List<Patient> patients=cri.list();
+			tr.commit();
+			return patients;
+		}
 	}
-
-

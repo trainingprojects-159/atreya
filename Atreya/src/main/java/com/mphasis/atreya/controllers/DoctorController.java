@@ -20,7 +20,7 @@ import com.mphasis.atreya.service.LeaveReportService;
 import com.mphasis.atreya.service.PatientService;
 
 @RestController
-@RequestMapping("doctor")
+@RequestMapping("/doctor")
 public class DoctorController {
 	
 	@Autowired
