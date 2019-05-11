@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.mphasis.atreya.dao.PatientDao;
 import com.mphasis.atreya.entities.Patient;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 @Repository
 public class PatientDaoImpl implements PatientDao {
@@ -25,7 +26,7 @@ public class PatientDaoImpl implements PatientDao {
 			this.sessionFactory = sessionFactory;
 		}
 
-		public Patient login(String pname,String pwd) {
+		public Patient login(String pname,String pwd) throws ClinicExceptions{
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			TypedQuery<Patient> query=session.createQuery("from Patient where pname=:name and pwd=:pass");
@@ -36,14 +37,14 @@ public class PatientDaoImpl implements PatientDao {
 			return patient;
 		}
 
-		public void register(Patient patient) {
+		public void register(Patient patient) throws ClinicExceptions{
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			session.save(patient);		
 			tr.commit();
 		}
 		
-		public void deletePatient(String pid) {
+		public void deletePatient(String pid) throws ClinicExceptions{
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			Patient patient1=(Patient)session.get(Patient.class, pid);
@@ -51,14 +52,14 @@ public class PatientDaoImpl implements PatientDao {
 			tr.commit();
 		}
 
-		public void updatePatient(Patient patient) {
+		public void updatePatient(Patient patient) throws ClinicExceptions{
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			session.update(patient);
 			tr.commit();
 		}
 
-		public Patient getById(String pid) {
+		public Patient getById(String pid) throws ClinicExceptions{
 			Session session = this.sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			Patient patient1=(Patient)session.get(Patient.class, pid);
@@ -66,7 +67,7 @@ public class PatientDaoImpl implements PatientDao {
 			return patient1;
 		}
 
-		public List<Patient> getPatients() {
+		public List<Patient> getPatients() throws ClinicExceptions{
 			Session session = this.sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			List<Patient> patients=session.createQuery("from Patient", Patient.class).list();
@@ -74,7 +75,7 @@ public class PatientDaoImpl implements PatientDao {
 			return patients;
 		}
 
-		public List<Patient> getPatientByName(String pname) {
+		public List<Patient> getPatientByName(String pname) throws ClinicExceptions{
 			Session session = this.sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
 			Query<Patient> cri=session.createQuery("from Patient where pname=:pname", Patient.class);

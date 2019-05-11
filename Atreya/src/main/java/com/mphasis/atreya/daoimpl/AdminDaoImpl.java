@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.mphasis.atreya.dao.AdminDao;
 import com.mphasis.atreya.entities.Admin;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 
 
@@ -21,8 +22,7 @@ public class AdminDaoImpl implements AdminDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public Admin login(String adminid, String pwd) 
-	{
+	public Admin login(String adminid, String pwd) throws ClinicExceptions	{
 		Session session=sessionFactory.openSession();
 		TypedQuery<Admin> query=session.createQuery("from Admin where adminid=:adminid and pwd=:pwd");
 		   query.setParameter("adminid", adminid);

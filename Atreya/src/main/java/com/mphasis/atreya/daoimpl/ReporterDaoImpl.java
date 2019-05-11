@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.atreya.dao.ReporterDao;
 import com.mphasis.atreya.entities.Reporter;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 
 @Repository
@@ -24,7 +25,7 @@ public class ReporterDaoImpl implements ReporterDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public Reporter login(String repid, String pwd) {
+	public Reporter login(String repid, String pwd) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		TypedQuery<Reporter> query=session.createQuery("from Reporter where repid=:repid and pwd=:pwd");
@@ -35,7 +36,7 @@ public class ReporterDaoImpl implements ReporterDao {
 		return reporter;
 	}
 
-	public void insertReporter(Reporter reporter) {
+	public void insertReporter(Reporter reporter) throws ClinicExceptions{
 		{
 			Session session = sessionFactory.openSession();
 			Transaction tr = session.beginTransaction();
@@ -44,7 +45,7 @@ public class ReporterDaoImpl implements ReporterDao {
 		}
 	}
 
-	public void deleteReporter(String repid) {
+	public void deleteReporter(String repid) throws ClinicExceptions{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
 		Reporter r = (Reporter) session.get(Reporter.class,repid);
@@ -52,7 +53,7 @@ public class ReporterDaoImpl implements ReporterDao {
 		tr.commit();
 	}
 
-	public void updateReporter(Reporter reporter) {
+	public void updateReporter(Reporter reporter) throws ClinicExceptions{
 		Session session = sessionFactory.openSession();
 		Transaction tr = session.beginTransaction();
 		session.update(reporter);

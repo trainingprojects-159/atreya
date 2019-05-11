@@ -2,13 +2,14 @@ package com.mphasis.atreya.service;
 
 import java.util.List;
 import com.mphasis.atreya.entities.Doctor;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 public interface DoctorService {
 
-	public Doctor signin(String doctname, String pwd);
-	public void addDoctor(Doctor doctor);
-	public void removeDoctor(String doctid);
-	public void editDoctor(Doctor doctid);
-	public Doctor getById(String doctid);
-	public List<Doctor> getDoctors();
+	public Doctor signin(String doctname, String pwd) throws ClinicExceptions;
+	public void addDoctor(Doctor doctor) throws ClinicExceptions;
+	public void removeDoctor(String doctid) throws ClinicExceptions;
+	public void editDoctor(Doctor doctid) throws ClinicExceptions;
+	public Doctor getById(String doctid) throws ClinicExceptions;
+	public List<Doctor> getDoctors() throws ClinicExceptions;
 }

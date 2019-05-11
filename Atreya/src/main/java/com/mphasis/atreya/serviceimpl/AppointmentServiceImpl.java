@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mphasis.atreya.dao.AppointmentDao;
 import com.mphasis.atreya.entities.Appointment;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.AppointmentService;
 
 @Service
@@ -18,7 +19,7 @@ public void setAppointmentDao(AppointmentDao appointmentDao) {
 }
 	
 
-	public void addAppointment(Appointment appointment) {
+	public void addAppointment(Appointment appointment) throws ClinicExceptions{
 		System.out.println("Appointment granted"+appointment.getAppid());
 		appointmentDao.requestAppointment(appointment);
 		

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mphasis.atreya.dao.PatientDao;
 import com.mphasis.atreya.entities.Patient;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.PatientService;
 
 @Service
@@ -21,39 +22,39 @@ public class PatientServiceImpl implements PatientService {
 		this.patientDao = patientDao;
 	}
 
-	public void removePatient(String pid) {
+	public void removePatient(String pid) throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		patientDao.deletePatient(pid);
 	}
 
-	public void editPatient(Patient patient) {
+	public void editPatient(Patient patient) throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		patientDao.updatePatient(patient);
 
 	}
 
-	public Patient getById(String pid) {
+	public Patient getById(String pid) throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		return patientDao.getById(pid);
 	}
 
-	public List<Patient> getPatients() {
+	public List<Patient> getPatients() throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		return patientDao.getPatients();
 	}
 
-	public List<Patient> getPatientByName(String pname) {
+	public List<Patient> getPatientByName(String pname) throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		return patientDao.getPatientByName(pname);
 	}
 
-	public Patient entry(String pname, String pwd) {
+	public Patient entry(String pname, String pwd) throws ClinicExceptions{
 		// TODO Auto-generated method stub
 		System.out.println("Patient values in service");
 		return patientDao.login(pname, pwd);
 		
 	}
-	public void roll(Patient patient) {
+	public void roll(Patient patient) throws ClinicExceptions{
 		System.out.println("Patient regestraion is successful");
 		patientDao.register(patient);
 		

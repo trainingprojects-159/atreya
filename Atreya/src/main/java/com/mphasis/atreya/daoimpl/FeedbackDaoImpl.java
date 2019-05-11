@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.atreya.dao.FeedbackDao;
 import com.mphasis.atreya.entities.Feedback;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 @Repository
 public class FeedbackDaoImpl implements FeedbackDao {
@@ -19,7 +20,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void createFedback(Feedback feedback) {
+	public void createFedback(Feedback feedback) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		session.save(feedback);

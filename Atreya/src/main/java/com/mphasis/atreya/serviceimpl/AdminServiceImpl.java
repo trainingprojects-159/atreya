@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mphasis.atreya.dao.AdminDao;
 import com.mphasis.atreya.entities.Admin;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.AdminService;
 
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl implements AdminService  {
 
 	@Autowired
 	AdminDao adminDao;
@@ -17,7 +18,7 @@ public class AdminServiceImpl implements AdminService {
 		this.adminDao = adminDao;
 	}
 	
-	 public Admin register(String adminid, String pwd) {
+	 public Admin register(String adminid, String pwd) throws ClinicExceptions {
 		 return adminDao.login(adminid, pwd);
 	}
 

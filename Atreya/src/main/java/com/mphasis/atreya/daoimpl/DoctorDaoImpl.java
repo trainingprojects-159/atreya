@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.mphasis.atreya.dao.DoctorDao;
 import com.mphasis.atreya.entities.Doctor;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 @Repository
 public class DoctorDaoImpl implements DoctorDao {
@@ -22,12 +23,12 @@ public class DoctorDaoImpl implements DoctorDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void insertDoctor(Doctor doctor) {
+	public void insertDoctor(Doctor doctor) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		session.save(doctor);
 	}
 
-	public void deleteDoctor(String doctid) {
+	public void deleteDoctor(String doctid) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Doctor d=(Doctor)session.get(Doctor.class, doctid);
@@ -35,7 +36,7 @@ public class DoctorDaoImpl implements DoctorDao {
 		tr.commit();
 	}
 
-	public void updateDoctor(Doctor doctor) {
+	public void updateDoctor(Doctor doctor) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		session.update(doctor);
@@ -43,7 +44,7 @@ public class DoctorDaoImpl implements DoctorDao {
 		tr.commit();
 	}
 
-	public Doctor getById(String doctid) {
+	public Doctor getById(String doctid) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Doctor d=(Doctor)session.get(Doctor.class, doctid);
@@ -51,7 +52,7 @@ public class DoctorDaoImpl implements DoctorDao {
 		return d;
 	}
 
-	public List<Doctor> getAll() {
+	public List<Doctor> getAll() throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		List<Doctor> doctors=session.createQuery("from Doctor", Doctor.class).list();
@@ -59,7 +60,7 @@ public class DoctorDaoImpl implements DoctorDao {
 		return doctors;
 	}
 
-	public Doctor login(String doctname, String pwd) {
+	public Doctor login(String doctname, String pwd) throws ClinicExceptions{
 		Session session=sessionFactory.getCurrentSession();
 		Transaction tr=session.beginTransaction();
 		TypedQuery<Doctor> query=session.createQuery("from Doctor where doctname=:doctname and pwd=:pwd");
