@@ -25,28 +25,28 @@ public void setAppointmentDao(AppointmentDao appointmentDao) {
 		
 	}
 
-	public void removeAppointment(String id) {
+	public void removeAppointment(String id) throws ClinicExceptions {
 		appointmentDao.deleteAppointment(id);
 		
 	}
 
-	public void editAppointment(Appointment appointment) {
+	public void editAppointment(Appointment appointment) throws ClinicExceptions {
 		appointmentDao.updateAppointment(appointment);
 		
 	}
 
-	public Appointment getById(String id) {
+	public Appointment getById(String id) throws ClinicExceptions {
 	return appointmentDao.getById(id);
 		
 	}
+	
 
-	public List<Appointment> getAll() {
+	public List<Appointment> getAll() throws ClinicExceptions {
 		return appointmentDao.getAll();
 		
 	}
 
-	public List<Appointment> getAppointmentByDoctid(String doctid) {
+	public List<Appointment> getAppointmentByDoctid(String doctid) throws ClinicExceptions {
 		return appointmentDao.getAppointmentByDoctid(doctid);
 	}
-
 }

@@ -8,9 +8,9 @@ import com.mphasis.atreya.exceptions.ClinicExceptions;
 public interface AppointmentService {
 
 	public void addAppointment(Appointment appointment) throws ClinicExceptions;
-	public void removeAppointment(String id);
-	public void editAppointment(Appointment appointment);
-	public Appointment getById(String id);
-	public List<Appointment> getAll();
-	public List<Appointment> getAppointmentByDoctid(String doctid);
+	public void removeAppointment(String id) throws ClinicExceptions;
+	public void editAppointment(Appointment appointment) throws ClinicExceptions;
+	public Appointment getById(String id) throws ClinicExceptions;
+	public List<Appointment> getAll() throws ClinicExceptions;
+	public List<Appointment> getAppointmentByDoctid(String doctid) throws ClinicExceptions;
 }

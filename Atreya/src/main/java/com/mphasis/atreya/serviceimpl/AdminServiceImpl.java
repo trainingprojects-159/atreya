@@ -18,8 +18,25 @@ public class AdminServiceImpl implements AdminService  {
 		this.adminDao = adminDao;
 	}
 	
-	 public Admin register(String adminid, String pwd) throws ClinicExceptions {
-		 return adminDao.login(adminid, pwd);
+	public Admin register(String adminid, String pwd) throws ClinicExceptions
+	{
+		Admin admin = null;
+		if(adminid != null && adminid.matches("[AD][0-9]{5}"))
+		{
+			if(pwd != null && pwd.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
+			{
+				admin=adminDao.login(adminid, pwd);
+			}
+			else 
+			{
+				throw new ClinicExceptions("Entered pwd is invalid");
+			}
+		}
+		else 
+		{
+			throw new ClinicExceptions("Entered adminid " + adminid + " is invalid");
+		}
+		return admin;
 	}
-
 }
+

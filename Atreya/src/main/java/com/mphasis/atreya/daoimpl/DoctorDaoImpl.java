@@ -25,7 +25,9 @@ public class DoctorDaoImpl implements DoctorDao {
 
 	public void insertDoctor(Doctor doctor) throws ClinicExceptions{
 		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
 		session.save(doctor);
+		tr.commit();
 	}
 
 	public void deleteDoctor(String doctid) throws ClinicExceptions{
@@ -40,7 +42,6 @@ public class DoctorDaoImpl implements DoctorDao {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		session.update(doctor);
-		session.close();
 		tr.commit();
 	}
 
@@ -71,3 +72,4 @@ public class DoctorDaoImpl implements DoctorDao {
 		return doctor;
 	}
 }
+

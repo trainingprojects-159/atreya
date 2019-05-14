@@ -23,41 +23,52 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	public void removePatient(String pid) throws ClinicExceptions{
-		// TODO Auto-generated method stub
+		
 		patientDao.deletePatient(pid);
 	}
 
 	public void editPatient(Patient patient) throws ClinicExceptions{
-		// TODO Auto-generated method stub
 		patientDao.updatePatient(patient);
-
 	}
 
 	public Patient getById(String pid) throws ClinicExceptions{
-		// TODO Auto-generated method stub
 		return patientDao.getById(pid);
 	}
 
 	public List<Patient> getPatients() throws ClinicExceptions{
-		// TODO Auto-generated method stub
+	
 		return patientDao.getPatients();
 	}
 
 	public List<Patient> getPatientByName(String pname) throws ClinicExceptions{
-		// TODO Auto-generated method stub
 		return patientDao.getPatientByName(pname);
 	}
 
-	public Patient entry(String pname, String pwd) throws ClinicExceptions{
-		// TODO Auto-generated method stub
-		System.out.println("Patient values in service");
-		return patientDao.login(pname, pwd);
-		
+	public Patient entry(String pid, String pwd) throws ClinicExceptions{
+		Patient patient = null;
+		if(pid != null && pid.matches("[PT][0-9]{3}"))
+		{
+			if(pwd != null && pwd.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
+			{
+				patient=patientDao.login(pid, pwd);
+			}
+			else 
+			{
+				throw new ClinicExceptions("Entered pwd " + pwd + " is invalid");
+			}
+		}
+		else 
+		{
+			throw new ClinicExceptions("Entered patientid " + pid + " is invalid");
+		}
+		return patient;
 	}
+	
 	public void roll(Patient patient) throws ClinicExceptions{
 		System.out.println("Patient regestraion is successful");
 		patientDao.register(patient);
-		
 	}
 
 }
+
+

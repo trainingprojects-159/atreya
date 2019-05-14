@@ -14,6 +14,7 @@ import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Doctor;
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.entities.Reporter;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.AdminService;
 import com.mphasis.atreya.service.AppointmentService;
 import com.mphasis.atreya.service.DoctorService;
@@ -39,7 +40,7 @@ public class AdminController {
 
 
 	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Admin login(@RequestParam("adminid")String adminid,@RequestParam("pwd") String pwd) {
+	public Admin login(@RequestParam("adminid")String adminid,@RequestParam("pwd") String pwd) throws ClinicExceptions {
 		Admin admin=adminService.register(adminid, pwd);
 		return admin;
 	}
@@ -52,27 +53,27 @@ public class AdminController {
 	
 	 
 	 @RequestMapping(value="/doctors",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	 public List<Doctor> listDoctors(){
+	 public List<Doctor> listDoctors() throws ClinicExceptions{
 	     return doctorService.getDoctors();
 	 }
 	 
 	 @RequestMapping(value="/doctor/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public void addDoctor(@RequestBody Doctor d) {
+	 public void addDoctor(@RequestBody Doctor d) throws ClinicExceptions {
    	    this.doctorService.addDoctor(d); 
 	 }
 	
 	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public void deleteDoctor(@PathVariable("doctid") String doctid){
+	 public void deleteDoctor(@PathVariable("doctid") String doctid) throws ClinicExceptions{
 	     this.doctorService.removeDoctor(doctid);
 	 }
 	 
 	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public void editDoctor(@PathVariable("doctid") String doctid,@RequestBody Doctor d){
+	 public void editDoctor(@PathVariable("doctid") String doctid,@RequestBody Doctor d) throws ClinicExceptions{
 		  this.doctorService.editDoctor(d);
 	 }	
 	 
-	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.GET)
-	 public Doctor getByDoctorId(@PathVariable("doctid") String doctid){
+	 @RequestMapping(value="/doctor/{doctid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	 public Doctor getByDoctorId(@PathVariable("doctid") String doctid) throws ClinicExceptions{
 		  return  this.doctorService.getById(doctid);
 	 }
 	 
@@ -82,13 +83,13 @@ public class AdminController {
 		this.patientService = patientService;
 	}
     
-    @RequestMapping(value="/patient/{pid}",method=RequestMethod.GET)
-	public Patient getByPatientId(@PathVariable("pid") String pid){
+    @RequestMapping(value="/patient/{pid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Patient getByPatientId(@PathVariable("pid") String pid) throws ClinicExceptions{
 	   return  this.patientService.getById(pid);
 	}
     
-    @RequestMapping(value="/patient/{pid}",method=RequestMethod.PUT)
-	public void editPatient(@PathVariable("pid") String pid,@RequestBody Patient p){
+    @RequestMapping(value="/patient/{pid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void editPatient(@PathVariable("pid") String pid,@RequestBody Patient p) throws ClinicExceptions{
 	  this.patientService.editPatient(p);
 	}
     
@@ -99,15 +100,15 @@ public class AdminController {
 	}
     
     @RequestMapping(value="/reporter/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void addReporter(@RequestBody Reporter r){
+	public void addReporter(@RequestBody Reporter r) throws ClinicExceptions{
   	    this.reporterService.addReporter(r); 
 	 }
 	  	
     @Autowired
     AppointmentService appointmentService;
     
-    @RequestMapping(value="/appointment/{appid}",method=RequestMethod.PUT)
-	public void updateAppointment(@PathVariable("appid") String appid,@RequestBody Appointment a){
+    @RequestMapping(value="/appointment/{appid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void updateAppointment(@PathVariable("appid") String appid,@RequestBody Appointment a) throws ClinicExceptions{
 	  this.appointmentService.editAppointment(a);
 	}
 }

@@ -60,3 +60,4 @@ public class ReporterDaoImpl implements ReporterDao {
 		tr.commit();
 	}
 }
+

@@ -1,5 +1,6 @@
 package com.mphasis.atreya.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,9 @@ public class LeaveReport {
 	private int lrid;
 	private String status;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Doctor doctor;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Reporter reporter;
 	
 	public int getLrid() {

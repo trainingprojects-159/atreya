@@ -1,5 +1,6 @@
 package com.mphasis.atreya.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,10 +33,10 @@ public class Patient {
 	private String age;
 	private String gender;
 	private String report;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Doctor doctor;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private Appointment appointment;
 	
 	public Doctor getDoctor() {

@@ -47,8 +47,23 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	public Doctor signin(String doctname, String pwd) throws ClinicExceptions{
-		
-		return doctorDao.login(doctname, pwd);
+		Doctor doctor = null;
+		if(doctname != null && doctname.matches("[A-Za-z]{10}"))
+		{
+			if(pwd != null && pwd.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
+			{
+				doctor=doctorDao.login(doctname, pwd);
+			}
+			else 
+			{
+				throw new ClinicExceptions("Entered password is invalid");
+			}
+		}
+		else 
+		{
+			throw new ClinicExceptions("Entered doctorname " + doctname + " is invalid");
+		}
+		return doctor;
 	}
-
 }
+

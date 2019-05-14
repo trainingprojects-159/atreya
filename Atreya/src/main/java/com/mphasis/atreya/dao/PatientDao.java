@@ -12,7 +12,7 @@ public interface PatientDao {
 	public Patient getById(String pid) throws ClinicExceptions;
 	public List<Patient>getPatients() throws ClinicExceptions;
 	public List<Patient>getPatientByName(String pname) throws ClinicExceptions;
-	public Patient login(String pname,String pwd) throws ClinicExceptions;
+	public Patient login(String pid,String pwd) throws ClinicExceptions;
 	public void register(Patient patient) throws ClinicExceptions;
 
 }

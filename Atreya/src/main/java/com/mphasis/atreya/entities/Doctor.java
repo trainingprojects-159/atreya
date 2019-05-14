@@ -40,7 +40,7 @@ public class Doctor {
 	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<LeaveReport> leaveReport;
-	@ManyToMany(mappedBy="doctor")
+	@ManyToMany(mappedBy="doctor",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Feedback> feedback;
 	@Override
@@ -96,6 +96,5 @@ public class Doctor {
 	}
 	public void setFeedback(List<Feedback> feedback) {
 		this.feedback = feedback;
-	}
-	
+	}	
 }

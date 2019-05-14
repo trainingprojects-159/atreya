@@ -26,12 +26,12 @@ public class PatientDaoImpl implements PatientDao {
 			this.sessionFactory = sessionFactory;
 		}
 
-		public Patient login(String pname,String pwd) throws ClinicExceptions{
+		public Patient login(String pid,String pwd) throws ClinicExceptions{
 			Session session=sessionFactory.openSession();
 			Transaction tr=session.beginTransaction();
-			TypedQuery<Patient> query=session.createQuery("from Patient where pname=:name and pwd=:pass");
-			query.setParameter("name", pname);
-			query.setParameter("pass",pwd);
+			TypedQuery<Patient> query=session.createQuery("from Patient where pid=:pid and pwd=:pwd");
+			query.setParameter("name", pid);
+			query.setParameter("pwd",pwd);
 			Patient patient=(Patient)query.getSingleResult();
 			tr.commit();
 			return patient;

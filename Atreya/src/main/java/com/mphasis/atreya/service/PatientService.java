@@ -12,7 +12,7 @@ public interface PatientService {
 	public Patient getById(String pid) throws ClinicExceptions;
 	public List<Patient>getPatients() throws ClinicExceptions;
 	public List<Patient>getPatientByName(String pname) throws ClinicExceptions;
-	public Patient entry(String pname,String pwd) throws ClinicExceptions;
+	public Patient entry(String pid,String pwd) throws ClinicExceptions;
 	public void roll(Patient patient) throws ClinicExceptions;
 
 }

@@ -2,7 +2,6 @@ package com.mphasis.atreya.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.mphasis.atreya.dao.ReporterDao;
 import com.mphasis.atreya.entities.Reporter;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
@@ -19,9 +18,26 @@ public class ReporterServiceImpl implements ReporterService {
 
 	public Reporter login(String repid, String pwd) throws ClinicExceptions{
 		
-		return reporterDao.login(repid,pwd);
-		
+		Reporter reporter = null;
+		if(repid != null && repid.matches("[RP][0-9]{3}"))
+		{
+			if(pwd != null && pwd.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
+			{
+				reporter=reporterDao.login(repid, pwd);
+			}
+			else 
+			{
+				throw new ClinicExceptions("Entered pwd is invalid");
+			}
+		}
+		else 
+		{
+			throw new ClinicExceptions("Entered  repid" + repid + " is invalid");
+		}
+		return reporter;
 	}
+		
+	
 
 	public void addReporter(Reporter reporter) throws ClinicExceptions{
 		 reporterDao.insertReporter(reporter);
@@ -39,3 +55,4 @@ public class ReporterServiceImpl implements ReporterService {
 	}
 	
 }
+

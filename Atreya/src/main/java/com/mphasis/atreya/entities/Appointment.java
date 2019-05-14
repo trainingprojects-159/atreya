@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.*;
 
@@ -25,6 +24,9 @@ public class Appointment {
 
 	private String appid;
 	private String appdetails;
+	@ManyToOne
+	private Doctor doctor;
+	
 	@Override
 	public String toString() {
 		return "Appointment [appid=" + appid + ", appdetails=" + appdetails + ", doctor=" + doctor + "]";
@@ -47,6 +49,4 @@ public class Appointment {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	@ManyToOne
-	private Doctor doctor;
 }

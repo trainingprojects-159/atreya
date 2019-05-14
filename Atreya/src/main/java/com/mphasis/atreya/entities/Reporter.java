@@ -55,5 +55,5 @@ public class Reporter {
 	public void setLeaveReport(List<LeaveReport> leaveReport) {
 		this.leaveReport = leaveReport;
 	}
-	
 }
+

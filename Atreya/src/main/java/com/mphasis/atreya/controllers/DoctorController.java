@@ -14,6 +14,7 @@ import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Doctor;
 import com.mphasis.atreya.entities.LeaveReport;
 import com.mphasis.atreya.entities.Patient;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.AppointmentService;
 import com.mphasis.atreya.service.DoctorService;
 import com.mphasis.atreya.service.LeaveReportService;
@@ -48,24 +49,24 @@ public class DoctorController {
 		this.patientService = patientService;
 	}
 	
-	@RequestMapping(value="/doctorlogin", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Doctor login(@RequestParam("doctid")String doctid,@RequestParam("pwd")String pwd) {
+	@RequestMapping(value="/doctorlogin/{doctid}/{pwd}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Doctor login(@PathVariable("doctid")String doctid, @PathVariable("pwd")String pwd) throws ClinicExceptions {
 		Doctor doctor=doctorService.signin(doctid, pwd);
 		return doctor;
 	}
 	
 	@RequestMapping(value="/appointment/{doctid}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Appointment> getAppByDoctid(@PathVariable("doctid")String doctid) {
+	public List<Appointment> getAppByDoctid(@PathVariable("doctid")String doctid) throws ClinicExceptions {
 		return this.appointmentService.getAppointmentByDoctid(doctid);
 	}
 	
 	@RequestMapping(value="/leavereport/add", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public void applyLeave(@RequestBody LeaveReport lr) {
+	public void applyLeave(@RequestBody LeaveReport lr) throws ClinicExceptions {
 		this.leaveReportService.applyLeave(lr);
 	}
 	
 	@RequestMapping(value="/patient/{pid}", method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editPatient(@PathVariable("pid")int pid, @RequestBody Patient p) {
+	public void editPatient(@PathVariable("pid")int pid, @RequestBody Patient p) throws ClinicExceptions {
 		this.patientService.editPatient(p);
 	}
 }

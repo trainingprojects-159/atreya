@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.mphasis.atreya.entities.LeaveReport;
 import com.mphasis.atreya.entities.Reporter;
+import com.mphasis.atreya.exceptions.ClinicExceptions;
 import com.mphasis.atreya.service.LeaveReportService;
 import com.mphasis.atreya.service.ReporterService;
 
@@ -32,14 +33,14 @@ public class ReporterController {
 		this.leaveReportService = leaveReportService;
 	}
 
-	@RequestMapping(value="/reporterlogin",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Reporter login(@RequestParam("repid")String repid,@RequestParam("pwd")String pwd) {
+	@RequestMapping(value="/reporterlogin/{repid}/{pwd}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Reporter login(@PathVariable("repid")String repid,@PathVariable("pwd")String pwd) throws ClinicExceptions {
 		Reporter reporter=reporterService.login(repid,pwd);
 		return reporter;
 	}
 	
 	@RequestMapping(value="/leavereport/{lrid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE) 
-	public void updateleaveReport(@PathVariable("lrid")int lrid,@RequestBody LeaveReport lr) {
+	public void updateleaveReport(@PathVariable("lrid")int lrid,@RequestBody LeaveReport lr) throws ClinicExceptions {
 		this.leaveReportService.manageLeave(lr);
 	}
 }
