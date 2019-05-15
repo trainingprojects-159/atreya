@@ -7,4 +7,5 @@ public interface LeaveReportDao {
 
 	public void applyLeave(LeaveReport leaveReport) throws ClinicExceptions;
 	public void manageLeave(LeaveReport leaveReport) throws ClinicExceptions;
+	public List<LeaveReport> getAllReports() throws ClinicExceptions;
 }
