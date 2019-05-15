@@ -36,5 +36,14 @@ public class LeaveReportDaoImpl implements LeaveReportDao {
 		session.update(leaveReport);
 		tr.commit();
 		session.close();
+		
+		public List<LeaveReport> getAllReports() throws ClinicExceptions{
+	
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		List<LeaveReport> LeaveReport=session.createQuery("from LeaveReport", LeaveReport.class).list();
+		tr.commit();
+		return LeaveReport;
+				
 	}
-}
+	}
