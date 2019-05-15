@@ -20,6 +20,10 @@ public class LeaveReportServiceImpl implements LeaveReportService {
 	public void manageLeave(LeaveReport leaveReport) throws ClinicExceptions{
 		leaveReportDao.manageLeave(leaveReport);
 	}
+	public List<LeaveReport> getAllReports() throws ClinicExceptions {
+
+		return leaveReportDao.getAllReports();
+	}
 
 }
 
