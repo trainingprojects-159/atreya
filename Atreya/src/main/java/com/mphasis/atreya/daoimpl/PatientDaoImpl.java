@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.mphasis.atreya.dao.PatientDao;
+import com.mphasis.atreya.entities.Appointment;
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
 
@@ -80,6 +81,16 @@ public class PatientDaoImpl implements PatientDao {
 			Transaction tr=session.beginTransaction();
 			Query<Patient> cri=session.createQuery("from Patient where pname=:pname", Patient.class);
 			cri.setParameter("pname", pname);
+			List<Patient> patients=cri.list();
+			tr.commit();
+			return patients;
+		}
+
+		public List<Patient> getPatientByDocId(String doctid) throws ClinicExceptions {
+			Session session=sessionFactory.openSession();
+			Transaction tr = session.beginTransaction();
+			Query<Patient> cri=session.createQuery("from Patient where doctid=:doctid", Patient.class);
+			cri.setParameter("doctid", doctid);
 			List<Patient> patients=cri.list();
 			tr.commit();
 			return patients;

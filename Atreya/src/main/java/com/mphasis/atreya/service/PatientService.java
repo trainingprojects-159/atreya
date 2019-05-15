@@ -1,7 +1,6 @@
 package com.mphasis.atreya.service;
 
 import java.util.List;
-
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
 
@@ -14,5 +13,6 @@ public interface PatientService {
 	public List<Patient>getPatientByName(String pname) throws ClinicExceptions;
 	public Patient entry(String pid,String pwd) throws ClinicExceptions;
 	public void roll(Patient patient) throws ClinicExceptions;
+	public List<Patient> getPatientByDoctid(String doctid) throws ClinicExceptions;
 
 }

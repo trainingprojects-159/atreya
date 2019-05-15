@@ -2,7 +2,7 @@ package com.mphasis.atreya.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +40,9 @@ public class PatientController {
 		this.feedbackService = feedbackService;
 	}
 
-	@RequestMapping(value="/patientlogin", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Patient login(@RequestParam("pname")String pname,@RequestParam("pwd")String pwd) throws ClinicExceptions {
-		Patient user=patientService.entry(pname,pwd);
+	@RequestMapping(value="/patientlogin/{pid}/{pwd}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Patient login(@PathVariable("pid")String pid,@PathVariable("pwd")String pwd) throws ClinicExceptions {
+		Patient user=patientService.entry(pid,pwd);
 		return user;
 	}
 	

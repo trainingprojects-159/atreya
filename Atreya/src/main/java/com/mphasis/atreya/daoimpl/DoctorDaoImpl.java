@@ -8,11 +8,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.mphasis.atreya.dao.DoctorDao;
 import com.mphasis.atreya.entities.Doctor;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 @Repository
+@Transactional
 public class DoctorDaoImpl implements DoctorDao {
 
 	@Autowired
@@ -61,14 +64,14 @@ public class DoctorDaoImpl implements DoctorDao {
 		return doctors;
 	}
 
-	public Doctor login(String doctname, String pwd) throws ClinicExceptions{
+	public Doctor login(String doctid, String pwd) throws ClinicExceptions{
 		Session session=sessionFactory.getCurrentSession();
-		Transaction tr=session.beginTransaction();
-		TypedQuery<Doctor> query=session.createQuery("from Doctor where doctname=:doctname and pwd=:pwd");
-		query.setParameter("doctname", doctname);
+		//Transaction tr=session.beginTransaction();
+		TypedQuery<Doctor> query=session.createQuery("from Doctor where doctid=:doctid and pwd=:pwd");
+		query.setParameter("doctid", doctid);
 		query.setParameter("pwd", pwd);
 		Doctor doctor=(Doctor) query.getSingleResult();
-		tr.commit();
+		//tr.commit();
 		return doctor;
 	}
 }

@@ -5,12 +5,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.mphasis.atreya.dao.LeaveReportDao;
 import com.mphasis.atreya.entities.LeaveReport;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 
 @Repository
+@Transactional
 public class LeaveReportDaoImpl implements LeaveReportDao {
 
 	@Autowired

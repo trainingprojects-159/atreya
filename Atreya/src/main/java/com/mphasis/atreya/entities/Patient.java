@@ -33,10 +33,10 @@ public class Patient {
 	private String age;
 	private String gender;
 	private String report;
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Doctor doctor;
 	
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Appointment appointment;
 	
 	public Doctor getDoctor() {

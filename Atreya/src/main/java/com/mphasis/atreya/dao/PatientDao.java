@@ -1,7 +1,6 @@
 package com.mphasis.atreya.dao;
 
 import java.util.List;
-
 import com.mphasis.atreya.entities.Patient;
 import com.mphasis.atreya.exceptions.ClinicExceptions;
 
@@ -14,5 +13,6 @@ public interface PatientDao {
 	public List<Patient>getPatientByName(String pname) throws ClinicExceptions;
 	public Patient login(String pid,String pwd) throws ClinicExceptions;
 	public void register(Patient patient) throws ClinicExceptions;
+	public List<Patient> getPatientByDocId(String doctid) throws ClinicExceptions;
 
 }

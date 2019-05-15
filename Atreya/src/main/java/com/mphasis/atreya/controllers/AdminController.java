@@ -39,8 +39,8 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value="/login", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Admin login(@RequestParam("adminid")String adminid,@RequestParam("pwd") String pwd) throws ClinicExceptions {
+	@RequestMapping(value="/login/{adminid}/{pwd}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Admin login(@PathVariable("adminid") String adminid,@PathVariable("pwd") String pwd) throws ClinicExceptions {
 		Admin admin=adminService.register(adminid, pwd);
 		return admin;
 	}

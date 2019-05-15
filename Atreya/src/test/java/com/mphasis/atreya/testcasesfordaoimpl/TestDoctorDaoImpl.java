@@ -42,8 +42,8 @@ public class TestDoctorDaoImpl {
 			e.printStackTrace();
 		}
 		
-		
 	}
+	
 	
 	@Test
 	public void testGetById() throws ClinicExceptions {
@@ -53,7 +53,24 @@ public class TestDoctorDaoImpl {
 	}
 	
 	
-	/*@Test
+	
+	
+	@Test 
+	public void testGetAll() throws ClinicExceptions {
+		Doctor doctor=new Doctor();
+		java.util.List<Doctor> doctors=doctorDao.getAll();
+		
+		assertEquals(doctors.size(), 4);
+	}
+	
+	
+	@Test
+	public void testDeleteDoc() throws ClinicExceptions {
+		doctorDao.deleteDoctor("DR001");
+		assertNull(doctorDao.getById("DR001"));
+	}
+	
+	@Test
 	public void testInsertDoctor() throws ClinicExceptions {
 		Doctor doctor=new Doctor();
 		doctor.setPwd("345");
@@ -65,24 +82,7 @@ public class TestDoctorDaoImpl {
 		assertEquals(doctor.getPwd(), "345");
 		assertEquals(doctor.getDoctname(), "Tushar");
 		assertEquals(doctor.getSpecialization(), "MBBS");
-	}*/
-	
-	@Test 
-	public void testGetAll() throws ClinicExceptions {
-		Doctor doctor=new Doctor();
-		java.util.List<Doctor> doctors=doctorDao.getAll();
-		
-		assertEquals(doctors.size(), 4);
 	}
-	
-	/*@Test
-	public void testDeleteDoc() throws ClinicExceptions {
-		
-		
-		doctorDao.deleteDoctor("DR001");
-		assertNull(doctorDao.getById("DR001"));
-	}*/
-	
 	
 	/*@Test
 	public void testUpdateDoc() {
@@ -106,11 +106,5 @@ public class TestDoctorDaoImpl {
 		
 		assertEquals(doctor.getDoctid(), "DR008");
 	}*/
-	/*@Test
-	public void Testdeletedoctor() throws ClinicExceptions {
-		Doctor doctor=new Doctor();
-		doctor=doctorDao.getById("DR111");
-		doctorDao.deleteDoctor("DR111");*/
-		
-  //}
+	
 }

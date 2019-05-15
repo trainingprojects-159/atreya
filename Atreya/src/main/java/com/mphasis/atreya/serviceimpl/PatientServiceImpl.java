@@ -69,6 +69,7 @@ public class PatientServiceImpl implements PatientService {
 		patientDao.register(patient);
 	}
 
+	public List<Patient> getPatientByDoctid(String doctid) throws ClinicExceptions {
+		return patientDao.getPatientByDocId(doctid);
+	}
 }
-
-

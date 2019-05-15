@@ -15,10 +15,19 @@ public class LeaveReport {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int lrid;
 	private String status;
+	
+	private String leave_details;
 
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	public String getLeave_details() {
+		return leave_details;
+	}
+	public void setLeave_details(String leave_details) {
+		this.leave_details = leave_details;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Doctor doctor;
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Reporter reporter;
 	
 	public int getLrid() {

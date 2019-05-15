@@ -69,4 +69,9 @@ public class DoctorController {
 	public void editPatient(@PathVariable("pid")int pid, @RequestBody Patient p) throws ClinicExceptions {
 		this.patientService.editPatient(p);
 	}
+	
+	@RequestMapping(value="/patient/{doctid}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Patient> getPatientByDoctid(@PathVariable("doctid")String doctid) throws ClinicExceptions {
+		return this.patientService.getPatientByDoctid(doctid);
+	}
 }

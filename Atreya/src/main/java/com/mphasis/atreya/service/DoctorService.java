@@ -6,7 +6,7 @@ import com.mphasis.atreya.exceptions.ClinicExceptions;
 
 public interface DoctorService {
 
-	public Doctor signin(String doctname, String pwd) throws ClinicExceptions;
+	public Doctor signin(String doctid, String pwd) throws ClinicExceptions;
 	public void addDoctor(Doctor doctor) throws ClinicExceptions;
 	public void removeDoctor(String doctid) throws ClinicExceptions;
 	public void editDoctor(Doctor doctid) throws ClinicExceptions;

@@ -46,13 +46,13 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorDao.getAll();
 	}
 
-	public Doctor signin(String doctname, String pwd) throws ClinicExceptions{
+	public Doctor signin(String doctid, String pwd) throws ClinicExceptions{
 		Doctor doctor = null;
-		if(doctname != null && doctname.matches("[A-Za-z]{10}"))
+		if(doctid != null && doctid.matches("[A-Za-z0-9]{5}"))
 		{
 			if(pwd != null && pwd.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
 			{
-				doctor=doctorDao.login(doctname, pwd);
+				doctor=doctorDao.login(doctid, pwd);
 			}
 			else 
 			{
@@ -61,7 +61,7 @@ public class DoctorServiceImpl implements DoctorService {
 		}
 		else 
 		{
-			throw new ClinicExceptions("Entered doctorname " + doctname + " is invalid");
+			throw new ClinicExceptions("Entered doctor id " + doctid + " is invalid");
 		}
 		return doctor;
 	}
