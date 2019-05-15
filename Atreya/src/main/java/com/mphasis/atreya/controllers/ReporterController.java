@@ -43,4 +43,8 @@ public class ReporterController {
 	public void updateleaveReport(@PathVariable("lrid")int lrid,@RequestBody LeaveReport lr) throws ClinicExceptions {
 		this.leaveReportService.manageLeave(lr);
 	}
+	@RequestMapping(value="/leaves",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE) 
+	public List<LeaveReport> getAllReports() throws ClinicExceptions{
+		return leaveReportService.getAllReports();
+	}
 }
