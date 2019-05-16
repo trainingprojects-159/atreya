@@ -1,47 +1,60 @@
-<!--
-<form #loginForm="ngForm" (ngSubmit)="doctorlogin()">
-  <div class="panel panel-primary">
-    
-    <div  calss="col-md-6 col-md-offset-3">
-      <h3 class="panel-title">Doctor Log In</h3>
+<!-- <html>
+  <form #loginForm="ngForm" (ngSubmit)="login()" id="form_login">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      <h3 class="panel-title">Login</h3>
     </div>
-    
     <div class="panel-body">
-      
-      <div class="form-group">
-        <label for="doctid">Doctor ID</label>
-        <input type="text" class="form-control" id="doctid" required [(ngModel)]="doctor.doctid" name="doctid" placeholder="Enter Doctor ID">
-      </div>
-      
-      <div class="form-group">
-        <label for="pwd">Password</label>
-        <input type="password" class="form-control" id="pwd" required [(ngModel)]="doctor.pwd" name="pwd" placeholder="Enter Password">
-      </div>
-    
+    <div class="form-group">
+      <label for="adminid">Adminid</label>
+        <input type="text"  class="form-controller" id="adminid"  required [(ngModel)]="admin.adminid" name="adminid">
     </div>
-     
+     <div class="form-group">
+       <label for="password">Password</label>
+         <input type="password"  class="form-controller" name="pwd" id="pwd" required [(ngModel)]="admin.pwd">
+     </div>
+    </div>
     <div class="panel-footer">
-      <button class="btn btn-primary" type="submit">Log In</button>
+      <button class="bt btn-primary" type="submit">Login</button>
     </div>
-
   </div>
+  
 </form>
--->
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Doctor Login</h2>
-    <form name="form" (ngSubmit)="f.form.valid && doctorlogin()" #f="ngForm" novalidate>
+</html> -->
+<div class="col-md-6 col-md-offset-3">
+
+    <h2>Admin Login</h2>
+
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
         <div class="form-group">
-            <label for="doctid">Doctor ID</label>
-            <input type="text" class="form-control" name="doctid" [(ngModel)]="doctor.doctid" #doctid="ngModel" required placeholder="Enter Doctor ID" />
-            <div *ngIf="f.submitted && !doctid.valid" class="help-block">Docter ID is required</div>
+
+            <label for="adminid">Admin ID</label>
+
+            <input type="text" class="form-control" name="adminid" [(ngModel)]="admin.adminid" #adminid="ngModel" required placeholder="Enter Admin ID" />
+
+            <div *ngIf="f.submitted && !adminid.valid" class="help-block">Admin ID is required</div>
+
         </div>
+
         <div class="form-group">
+
             <label for="pwd">Password</label>
-            <input type="password" class="form-control" name="pwd" [(ngModel)]="doctor.pwd" #pwd="ngModel" required placeholder="Enter Password" />
+
+            <input type="password" class="form-control" name="pwd" [(ngModel)]="admin.pwd" #pwd="ngModel" required placeholder="Enter Password" />
+
             <div *ngIf="f.submitted && !pwd.valid" class="help-block">Password is required</div>
+
         </div>
+
         <div class="form-group">
-            <button class="btn btn-primary">Login</button>
+
+            <button [disabled]="loading" class="btn btn-primary">Login</button>
+
         </div>
+
     </form>
+
 </div>
+
+ 

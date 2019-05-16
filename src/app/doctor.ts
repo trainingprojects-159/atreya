@@ -1,7 +1,10 @@
-export class Doctor {
+import { Feedback } from "./feedback";
 
-    doctid: string;
-    pwd: string;
-    doctname: string;
-    specialization: string;
+export class Doctor {
+    doctid:string;
+    pwd:string;
+    doctname:string;
+    specialization:string;
+    //feedback:Feedback[];
+
 }

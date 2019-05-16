@@ -1,4 +1,4 @@
 export class Admin {
-    adminid: string;
-    pwd: string;
+ adminid:string;
+ pwd:string;
 }

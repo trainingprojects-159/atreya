@@ -1,0 +1,18 @@
+<html>
+  <body>
+      <div style="padding: 20px;">
+          <h2 style="color: blue">Welcome {{title}}</h2>
+          <nav>
+            <a routerLink="doctors" 
+            class="btn btn-primary active" 
+            role="button" routerLinkActive="active">Doctors</a>
+            <!-- <a routerLink="add" class="btn btn-primary active" 
+            role="button" routerLinkActive="active">AddDoctor</a> -->
+            <a routerLink="addreporter"	class="btn btn-primary active" 
+            role="button" routerLinkActive="active">Add Reporter</a>
+          </nav>
+          <router-outlet></router-outlet>
+        </div>
+  </body>
+
+</html>

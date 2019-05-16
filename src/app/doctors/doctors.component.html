@@ -1,0 +1,18 @@
+
+<table border="1">
+  <tr>
+    <th>Doctor Id</th>
+    <th>Doctor Name</th>
+    <th>Specialization</th>
+  </tr>
+  <tr *ngFor='let doctor of doctors'>
+    <td>{{doctor.doctid}}</td>
+    <td>{{doctor.doctname}}</td>
+    <td>{{doctor.specialization}}</td>
+    <td><a class="btn btn-danger" routerLink='/home/editdoctor/{{doctor.doctid}}'>EditDoctor</a></td>
+     <td> <button class="btn btn-danger" (click)="delete(doctor.doctid)">Delete</button></td>
+  </tr>
+</table>
+
+<a routerLink='/home/adddoctors'>AddDoctor</a>
+

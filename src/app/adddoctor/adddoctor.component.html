@@ -1,0 +1,65 @@
+<form #doctorForm="ngForm" (ngSubmit)="saveDoctor()">
+
+	<div class="panel panel-primary">
+
+		<div class="panel-heading">
+
+			<h3 class="panel-title">Add Doctor</h3>
+
+			</div>
+
+	 
+
+		<div class="panel-body">
+
+			<div class="form-group">
+
+				<label for="doctid">Doctor ID</label>
+
+				<input id="doctid" type="text" name="doctid" [(ngModel)]="doctor.doctid" #doctid="ngModel" required>
+				<div class="alert alert-danger" *ngIf="doctid.touched && !doctid.valid">Doctor id is Manadtory</div>
+
+			</div>
+
+
+
+			<div class="form-group">
+
+				<label for="pwd">Password</label>
+
+				<input id="pwd" type="password" name="pwd" [(ngModel)]="doctor.pwd" required  #pwd="ngModel">
+				<div class="alert alert-danger" *ngIf="pwd.touched && !pwd.valid">Password is Manadtory</div>
+			</div>
+
+
+
+			<div class="form-group">
+
+				<label for="doctname">Doctor Name</label>
+
+				<input id="doctname" type="text" name="doctname" [(ngModel)]=doctor.doctname>
+
+			</div>
+			
+			<div class="form-group">
+
+				<label for="specialization">specialization</label>
+
+				<input id="specialization" type="text" name="specialization" [(ngModel)]=doctor.specialization>
+
+			</div>
+
+		</div>
+
+ 
+
+		<div class="panel-footer">
+
+			<button type="submit" class="btn btn-primary">Save</button>
+
+		</div>
+
+</div>
+
+</form>
+

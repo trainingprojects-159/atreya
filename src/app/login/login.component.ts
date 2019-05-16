@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Doctor } from '../doctor';
-import { DoctorService } from '../doctor.service';
+import { Admin } from '../admin';
+import { AdminService } from '../admin.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,27 +9,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  doctor: Doctor=new Doctor;
-  error = 'invalid';
-
-  constructor(private router: Router,
-    private _doctorService: DoctorService) { }
-
-  ngOnInit() {
-  }
-
-  doctorlogin() : void {
-    this._doctorService.doctorlogin(this.doctor.doctid, this.doctor.pwd)
-    .then( 
-      result => {
-      if (result === true ) {
-        console.log( 'Login Success' );
-        this.router.navigateByUrl('home');
-      } else {
-        this.error = 'Invalid Doctor ID and Password';
-        this.router.navigateByUrl('login');
-      }
-    }, error => { this.error = error; });
-  }
-}
+  admin: Admin=new Admin;
+  error ='invalid';
+   constructor(private router: Router, private _adminService: AdminService) {}
+    
+ 
+   ngOnInit() {
+   }
+   login(){
+  this._adminService.adminlogin(this.admin.adminid, this.admin.pwd)
+  .then(result => {
+   if(result === true){
+     console.log('loggin success');
+     localStorage.setItem('adminid',this.admin.adminid);
+     this.router.navigateByUrl('home');
+   }
+   else{
+     this.error = 'invalid username and password';
+     this.router.navigateByUrl('login');
+ 
+   }
+     
+   }, error => {this.error = error; });
+   return
+  
+   }
+ }
