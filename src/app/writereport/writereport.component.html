@@ -1,0 +1,26 @@
+<div class="col-md-6">
+  <table class="table table-sm table-hover">
+    <tr>
+      <th>Patient Id</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Phone Number</th>
+      <th>Name</th>
+      <th>Report</th>
+      <th>Appoinrment ID</th>
+    </tr>
+    <tr *ngFor="let patient of patients">
+      <td>{{patient.pid}}</td>
+      <td>{{patient.age}}</td>
+      <td>{{patient.gender}}</td>
+      <td>{{patient.phnum}}</td>
+      <td>{{patient.report}}</td>
+      <td>{{patient.appid}}</td>
+      <td>
+        <a class="btn"><i class="fa fa-pencil-square-o" (click)="editRecord(patient)"></i></a>
+        <a class="btn text-danger" (click)="onEdit(patient.report)"><i class="fa fa-trash-o"></i></a>
+      </td>
+      <!--<td><a class="btn btn-danger" routerLink='/doctor/Patient/{{doctor.doctid}}'>Edit</a></td>-->
+    </tr>
+  </table>
+</div>

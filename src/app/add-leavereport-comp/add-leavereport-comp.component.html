@@ -1,0 +1,30 @@
+<form #leaveForm="ngForm" (ngSubmit)="addLeavereport()">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Apply Leave</h3>
+            </div>
+          
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="appid">Leave Report ID</label>
+              <input id="appid" type="text" name="appid" [(ngModel)]="leaveReport.lrid">
+            </div>
+      
+            <div class="form-group">
+              <label for="appdetails">Leave Details</label>
+              <input id="appdetails" type="text" name="appdetails" [(ngModel)]="leaveReport.leave_details">
+            </div>
+      
+            <div class="form-group">
+              <label for="doctor">Doctor ID</label>
+              <input id="doctid" type="text" name="doctid" [(ngModel)]="doctId">
+            </div>
+          </div>
+        
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </div>
+      </div>
+      </form>
+
+      

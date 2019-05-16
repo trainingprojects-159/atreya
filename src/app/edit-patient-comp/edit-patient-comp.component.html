@@ -1,0 +1,20 @@
+
+<div class="col-md-6">
+  <table class="table table-sm table-hover">
+    <tr>
+      <th>Appointment Id</th>
+      <th>Details</th>
+      <th>DoctorId</th>
+    </tr>
+    <tr *ngFor="let appointment of appointments">
+      <td>{{appointment.appid}}</td>
+      <td>{{appointment.appdetails}}</td>
+      <td>{{appointment.doctor.doctid}}</td>
+      <!--<td>
+        <a class="btn"><i class="fa fa-pencil-square-o" (click)="editRecord(appointment)"></i></a>
+        <a class="btn text-danger" (click)="onDelete(appointment.appid)" ><i class="fa fa-trash-o"></i></a>
+      </td>-->
+
+    </tr>
+  </table>
+</div>
